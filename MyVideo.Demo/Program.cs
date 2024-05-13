@@ -15,6 +15,7 @@ public class Program
 
         var app = builder.Build();
 
+        // Decide which block to keep based on your requirements
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
