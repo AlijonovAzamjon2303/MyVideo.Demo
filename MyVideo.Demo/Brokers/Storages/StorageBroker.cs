@@ -1,17 +1,20 @@
-﻿namespace MyVideo.Demo.Brokers.Storages
-{
-    internal partial class StorageBroker : EFxceptionsContext
-    {
-        private readonly IConfiguration configuration;
-        public StorageBroker(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-            this.Database.Migrate(); 
-        }
+using EFxceptions;
+using Microsoft.EntityFrameworkCore;
 
-        protected override void OnConfiguring(DBContextOptionsBuilder optionsBuilder) 
-        {
-            string connectionString = this.configuration.GetConnectionString();
-        }
+namespace MyVideo.Demo.Brokers.Storages;
+
+internal partial class StorageBroker : EFxceptionsContext
+{
+    public StorageBroker(IConfiguration configuration)
+    {
+        this.Database.Migrate();
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // string connectionString = this.configuration.GetConnectionString("DefaultConnection");
+        optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        optionsBuilder.UseNpgsql("Server = ::1; Port=5433; Database=MyVideo.DemoDb; User Id=postgres; Password=postgres");
+
     }
 }
