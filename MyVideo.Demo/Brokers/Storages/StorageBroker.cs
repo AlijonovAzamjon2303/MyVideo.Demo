@@ -15,5 +15,6 @@ internal partial class StorageBroker : EFxceptionsContext
         // string connectionString = this.configuration.GetConnectionString("DefaultConnection");
         optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         optionsBuilder.UseNpgsql("Server = ::1; Port=5433; Database=MyVideo.DemoDb; User Id=postgres; Password=postgres");
+
     }
 }

@@ -7,3 +7,4 @@ internal partial class StorageBroker_VideoMetadatas
 {
     public DbSet<VideoMetadatas> VideoMetadatas { get; set; }
 }
+
